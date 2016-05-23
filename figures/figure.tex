@@ -1,0 +1,28 @@
+\documentclass[11pt]{article}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+
+\pgfplotsset{every axis legend/.append style={
+		at={(0,0)},
+		anchor=north east}} 
+
+\begin{document}
+
+\begin{figure}
+	\centering
+		\begin{tikzpicture}[scale=1]
+		\begin{axis}[xmin=1,xmax=6,ymin=0,ymax=20,xlabel=\large{Lookahead (hours)},ylabel=\large{Root weighted squared error},mark size=0.5pt,legend pos=outer north east]
+		\addplot[mark=none,thick,color=black] table [x=a,y=b, col sep=comma] {rf_sfo};
+		\addplot[mark=none,thick,dashed] table [x=a,y=b, col sep=comma] {wtmg_sfo};
+		\addplot[mark=none,thick,color=gray] table [x=a,y=b, col sep=comma] {rf_ewr};
+		\addplot[mark=none,thick,dashed,color=gray] table [x=a,y=b, col sep=comma] {wtmg_ewr};
+		\legend{\normalsize{SFO Random forest},\normalsize{SFO Rulefit},\normalsize{EWR Random forest},\normalsize{EWR Rulefit}}
+		\end{axis}
+		\end{tikzpicture}
+	\caption{\large{Random forest v.~Rulefit for AAR distribution prediction}}\label{fig:comparison}
+\end{figure}
+
+\end{document}
+
